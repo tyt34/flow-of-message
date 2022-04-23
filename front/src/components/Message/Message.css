@@ -1,0 +1,172 @@
+.message-footer {
+  width: 886px;
+  min-height: 20px;
+  /*background-color: rgb(184, 231, 181);*/
+  display: flex;
+  padding-top: 7px;
+}
+
+.message {
+  width: 886px;
+  min-height: 200px;
+  /*background-color: rgb(184, 231, 181);*/
+  display: flex;
+}
+
+.message__left {
+  display: flex;
+  flex-direction: column;
+  min-width: 56px;
+}
+
+.message__right {
+  display: flex;
+  flex-direction: column;
+}
+
+.message__top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.message__top-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.message__top-right {
+  display: flex;
+  flex-direction: row;
+}
+
+.message__img {
+  height: 36px;
+  width: 36px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.message__time {
+  margin-left: 10px;
+  margin-top: 8px;
+}
+
+.message__text-user {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 13px;
+  color: #808080;
+  margin-top: 11px;
+}
+
+.message__text-info {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 9px;
+  color: #808080;
+  margin-top: 6px;
+}
+
+.message__main-text {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: -0.035em;
+  color: #333333;
+  margin-top: 9px;
+}
+
+.message__next {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 10px;
+  color: #808080;
+  margin-top: 8px;
+}
+
+.message__ilus {
+  width: 259px;
+  height: 149px;
+  margin-top: 8px;
+}
+
+.message__text-blue {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 10px;
+  color: #0088EE;
+  margin-left: 9px;
+}
+
+.message__text-black {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 10px;
+  color: #CDCDCD;
+  margin-left: 8px;
+}
+
+.message__star {
+  width: 23px;
+  height: 20px;
+  margin-right: 11px;
+  margin-top: 14px;
+  margin-left: 8px;
+}
+
+.message__cvadro {
+  border: 1px solid #0088EE;
+  box-sizing: border-box;
+  border-radius: 2px;
+  width: 64px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  margin-top: 12px;
+}
+
+.message__cvadro-text {
+  font-family: 'Lato'; /*я не понял что за шрифт Font Awesome 5 Pro, так что будет обычный*/
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 11px;
+  text-align: center;
+  color: #0088EE;
+}
+
+.message__arrow {
+  width: 18px;
+  height: 20px;
+  margin-top: 14px;
+  margin-left: 29px;
+}
+
+.message__bottle {
+  width: 18px;
+  height: 18px;
+  margin-top: 14px;
+  margin-left: 10px;
+}
+
+.message__mech {
+  width: 20px;
+  height: 20px;
+  margin-top: 14px;
+  margin-left: 7px;
+}
