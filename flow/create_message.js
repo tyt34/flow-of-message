@@ -5,18 +5,22 @@ const translateOLD = require('@vitalets/google-translate-api');
 let apiNames = 'https://api.randomdatatools.ru/'
 let apiText = 'https://geek-jokes.sameerkumar.website/api?format=json'
 const { translate } = require('free-translate');
-
+let dataBefore
+let fName
+let sName
 let text
+let translateText
 
 getPerson()
 getText()
-//getTranslate()
 
 function getPerson() {
   request(apiNames, function(err, resp, html) {
     if (!err){
       console.log(JSON.parse(html).FirstName)
       console.log(JSON.parse(html).FatherName)
+      fName = JSON.parse(html).FirstName
+      sName = JSON.parse(html).FatherName
     } else {
       console.log("Error");
     }
@@ -36,18 +40,24 @@ function getText() {
 }
 
 function getTranslate() {
-  /*
-  (async () => {
-    const translatedText = await translate(text, { from: 'en', to: 'ru' });
-
-    console.log(' - - - -> ')
-    console.log(translatedText); // こんにちは世界
-  })();
-  */
   translateOLD(text, {to: 'ru'})
     .then( res => {
-      console.log(' -_-_-_-> ')
-      console.log(res.text)
+      translateText = res.text
+      console.log(translateText)
+      try {
+        dataBefore = JSON.parse(fs.readFileSync('../back/data.JSON', 'utf-8'))
+      } catch (e) {
+        dataBefore = []
+        console.log(' скорее всего, это первое получение сообщения. ', e)
+      }
+      let obj = {
+        fName,
+        sName,
+        text,
+        translateText
+      }
+      dataBefore.push(obj)
+      fs.writeFileSync('../back/data.JSON' , JSON.stringify(dataBefore))
     })
     .catch(
       (err) => {
