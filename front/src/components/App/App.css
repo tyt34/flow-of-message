@@ -1,7 +1,54 @@
-.main {
+.app {
   display: flex;
-  width: 593px;
-  height: 640px;
+  flex-direction: column;
   margin-left: auto;
   margin-right: auto;
+  width: 1100px;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main__flow {
+  margin-left: 30px;
+}
+
+.roof {
+  display: flex;
+  justify-content: space-between;
+}
+
+.roof__line {
+  height: 200px;
+  width: 3px;
+  background-color: rgb(135, 126, 132);
+}
+
+.roof__title {
+  font-size: 30px;
+}
+
+.roof__side {
+  display: flex;
+  justify-content: center;
+  width: 515px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.setting {
+  display: flex;
+  flex-direction: column;
+}
+
+.setting__title {
+  max-width: 410px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  /*
+  margin-bottom: 10px;
+  */
 }

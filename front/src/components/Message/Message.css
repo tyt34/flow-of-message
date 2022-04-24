@@ -1,16 +1,21 @@
 .message-footer {
-  width: 886px;
+  width: 515px;
   min-height: 20px;
   /*background-color: rgb(184, 231, 181);*/
   display: flex;
   padding-top: 7px;
+  border: 1px solid rgb(219, 224, 222);
+  border-top: none;
 }
 
 .message {
-  width: 886px;
+  width: 515px;
   min-height: 200px;
   /*background-color: rgb(184, 231, 181);*/
   display: flex;
+  margin-top: 20px;
+  border: 1px solid rgb(219, 224, 222);
+  border-bottom: none;
 }
 
 .message__left {
