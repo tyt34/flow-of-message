@@ -1,6 +1,5 @@
 .message-footer {
   width: 515px;
-  /*background-color: rgb(184, 231, 181);*/
   display: flex;
   padding-top: 7px;
   border: 1px solid rgb(219, 224, 222);
@@ -10,7 +9,6 @@
 .message {
   width: 515px;
   min-height: 100px;
-  /*background-color: rgb(184, 231, 181);*/
   display: flex;
   margin-top: 20px;
   border: 1px solid rgb(219, 224, 222);
@@ -26,6 +24,7 @@
 .message__right {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .message__top {
@@ -85,6 +84,7 @@
   letter-spacing: -0.035em;
   color: #333333;
   margin-top: 9px;
+  margin-right: 10px;
 }
 
 .message__next {

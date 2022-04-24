@@ -59,8 +59,6 @@ function getTranslate() {
         }
       }
       time = rewriteTime(now.getHours())+':'+rewriteTime(now.getMinutes())
-      //console.log(time)
-      //console.log(now)
       let obj = {
         fName,
         sName,

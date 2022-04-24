@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Message.css'
 import user from '../../images/user.png'
 import ilus from '../../images/ilus.png'
@@ -10,47 +10,66 @@ import mech from '../../images/mech.png'
 
 function Message(
   {
-    style, time, firstName, secondName, now,
-    text, translateText, favorite, setFavorite, likke
+    style, time, fName, sName, now, text, translateText,
+    favorite, setFavorite, isLike, arrMess, setArrMess
   }
 ) { // style false это упрощенный
   const [like, setLike] = useState(false)
 
-  function checkLike() {
-    if (firstName === 'Серафим') console.log(' now like ', like, firstName)
-    favorite.map( (mess) => {
-      if ((mess.now === now) && (mess.firstName === firstName)) {
-        likke = true
-        return likke
-      }
+  useEffect( () => {
+    let altMainArr = arrMess.slice()
+    altMainArr.map( (mess, i) => {
+      favorite.map( (favMes) => {
+        if ((mess.now === favMes.now) && (mess.fName === favMes.fName)) {
+          mess.isLike = true
+        }
+      })
     })
-  }
-
-  checkLike()
-
-  useState(() => {
-    setLike(likke)
+    setArrMess(altMainArr)
   }, [])
 
+  useEffect( () => {
+    if (isLike !== undefined) {
+      setLike(isLike)
+    }
+  }, [favorite.length, arrMess])
+
   function handleLikeClick() {
-    console.log(' click ')
     setLike(!like)
     if (!like) {
-      console.log(' like if this')
+      // добавление сообщения в массив "избранное"
       let newArr = favorite.slice()
-      newArr.push({style, time, firstName, secondName, now, text, translateText})
+      newArr.push({style, time, fName, sName, now, text, translateText, isLike: true})
       setFavorite(newArr)
+      localStorage.setItem('favor', JSON.stringify(newArr))
+      // добавление лайка в массив "главное"
+      let altMainArr = arrMess.slice()
+      altMainArr.map( (mess, i) => {
+        if ((mess.now === now) && (mess.fName === fName)) {
+          mess.isLike = true
+        }
+      })
+      setArrMess(altMainArr)
     } else {
-      console.log(' like destroy')
+      // удаление сообщения из массива "избранное"
       let newArr = favorite.slice()
       let indexForDel
       newArr.map( (mess, i) => {
-        if ((mess.now === now) && (mess.firstName === firstName)) {
+        if ((mess.now === now) && (mess.fName === fName)) {
           indexForDel = i
         }
       })
       newArr.splice(indexForDel, 1)
       setFavorite(newArr)
+      localStorage.setItem('favor', newArr)
+      // удаление лайка из массива "главное"
+      let altMainArr = arrMess.slice()
+      altMainArr.map( (mess, i) => {
+        if ((mess.now === now) && (mess.fName === fName)) {
+          mess.isLike = false
+        }
+      })
+      setArrMess(altMainArr)
     }
   }
 
@@ -71,7 +90,7 @@ function Message(
         <section className="message__top">
           <section className="message__top-left">
             <p className="message__text-user">
-              {firstName} {secondName}
+              {fName} {sName}
             </p>
             {
               style ?
@@ -133,7 +152,7 @@ function Message(
               <img
                 className="message__star"
                 alt="иконка кнопки добавления в избранное"
-                src={likke ? starOn : starOff}
+                src={like ? starOn : starOff}
               />
             </button>
           </section>

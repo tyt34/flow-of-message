@@ -15,22 +15,25 @@ function App() {
   useEffect( () => {
     getMessages()
     .then( res => {
-      setArrMess(res)
+      setArrMess(res.slice(-20))
     })
     .catch( e => {
       console.log(' er1 ', e)
     })
+    if (localStorage.favor) {
+      setFavorite(JSON.parse(localStorage.favor))
+    }
   }, [])
 
   useInterval(() => {
     getMessages()
     .then( res => {
-      getRightSortMess(res, sort)
+      getRightSortMess(res.slice(-20), sort)
     })
     .catch( e => {
       console.log(' er2 ', e)
     })
-  }, 50000);
+  }, 5000)
 
   function useInterval(callback, delay) {
     const savedCallback = useRef();
@@ -45,16 +48,14 @@ function App() {
         let id = setInterval(tick, delay);
         return () => clearInterval(id);
       }
-    }, [delay]);
+    }, [delay])
   }
 
   useEffect( () => {
-    //console.log('change sort')
     getRightSortMess(arrMess, sort)
   }, [sort])
 
   function getRightSortMess(array, sort) {
-    //console.log(' get sort arr ', sort)
     let arrSort = array
     if (sort) {
       arrSort.sort(sortTimeUp)
@@ -115,39 +116,45 @@ function App() {
       <section className="main">
         <section className="main__favor">
           { favorite.map( (el) =>
-                (
-                  <Message
-                    key={el.now}
-                    style={style}
-                    time={el.time}
-                    firstName={el.fName}
-                    secondName={el.sName}
-                    now={el.now}
-                    text={el.text}
-                    translateText={el.translateText}
-                    favorite={favorite}
-                    setFavorite={setFavorite}
-                  />
-                )
+              (
+                <Message
+                  key={el.now}
+                  style={style}
+                  time={el.time}
+                  fName={el.fName}
+                  sName={el.sName}
+                  now={el.now}
+                  text={el.text}
+                  translateText={el.translateText}
+                  favorite={favorite}
+                  setFavorite={setFavorite}
+                  arrMess={arrMess}
+                  setArrMess={setArrMess}
+                  isLike={el.isLike}
+                />
+              )
             )
           }
         </section>
         <section className="main__flow">
           { arrMess.map( (el) =>
-                (
-                  <Message
-                    key={el.now}
-                    style={style}
-                    time={el.time}
-                    firstName={el.fName}
-                    secondName={el.sName}
-                    now={el.now}
-                    text={el.text}
-                    translateText={el.translateText}
-                    favorite={favorite}
-                    setFavorite={setFavorite}
-                  />
-                )
+              (
+                <Message
+                  key={el.now}
+                  style={style}
+                  time={el.time}
+                  fName={el.fName}
+                  sName={el.sName}
+                  now={el.now}
+                  text={el.text}
+                  translateText={el.translateText}
+                  favorite={favorite}
+                  setFavorite={setFavorite}
+                  arrMess={arrMess}
+                  setArrMess={setArrMess}
+                  isLike={el.isLike}
+                />
+              )
             )
           }
         </section>
@@ -157,18 +164,3 @@ function App() {
 }
 
 export default App;
-/*
-<CheckBox
-  leftText="Сверху"
-  rightText="Снизу"
-  check={style}
-  handleCheck={useSort}
-/>
-
-<CheckBox
-  leftText="Из макета"
-  rightText="Упрощенный"
-  check={sort}
-  handleCheck={useStyle}
-/>
-*/

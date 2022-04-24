@@ -40,7 +40,6 @@
 
 .check__text-left {
   margin: 0;
-  /*margin-left: 35px;*/
   margin-left: 10px;
   margin-top: 12px;
   font-family: 'Inter';
@@ -53,7 +52,6 @@
 
 .check__text-right {
   margin: 0;
-  /*margin-left: 82px;*/
   margin-right: 10px;
   margin-top: 12px;
   font-family: 'Inter';

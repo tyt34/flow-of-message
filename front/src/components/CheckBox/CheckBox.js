@@ -2,10 +2,7 @@ import React, { useState } from 'react'
 import './CheckBox.css'
 
 function CheckBox({name, leftText, rightText, check, setCheck}) {
-  /*const [sort, setSort] = useState(false)*/
-  //console.log({leftText, rightText, check, handleCheck})
   function changeCheck() {
-    console.log(leftText, check)
     setCheck(!check)
   }
 
