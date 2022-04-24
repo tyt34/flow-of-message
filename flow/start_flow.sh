@@ -1,1 +1,1 @@
- watch --interval=2 nodejs create_message.js
+ watch --interval=4 nodejs create_message.js

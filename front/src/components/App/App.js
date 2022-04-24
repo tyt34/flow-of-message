@@ -1,20 +1,85 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './App.css'
 import Message from '../Message/Message'
 import CheckBox from '../CheckBox/CheckBox'
+import {
+  getMessages
+} from '../../utils/api.js'
 
 function App() {
-  const [sort, setSort] = useState(false)
-  const [style, setStyle] = useState(true)
+  const [sort, setSort] = useState(true)
+  const [style, setStyle] = useState(false)
+  const [arrMess, setArrMess] = useState([])
+  const [favorite, setFavorite] = useState([])
 
-  function useSort() {
-    console.log('use Sort')
-    setSort(!sort)
+  useEffect( () => {
+    getMessages()
+    .then( res => {
+      setArrMess(res)
+    })
+    .catch( e => {
+      console.log(' er1 ', e)
+    })
+  }, [])
+
+  useInterval(() => {
+    getMessages()
+    .then( res => {
+      getRightSortMess(res, sort)
+    })
+    .catch( e => {
+      console.log(' er2 ', e)
+    })
+  }, 50000);
+
+  function useInterval(callback, delay) {
+    const savedCallback = useRef();
+    useEffect(() => {
+      savedCallback.current = callback;
+    }, [callback]);
+    useEffect(() => {
+      function tick() {
+        savedCallback.current();
+      }
+      if (delay !== null) {
+        let id = setInterval(tick, delay);
+        return () => clearInterval(id);
+      }
+    }, [delay]);
   }
 
-  function useStyle() {
-    console.log('use Style ', style)
-    setStyle(!style)
+  useEffect( () => {
+    //console.log('change sort')
+    getRightSortMess(arrMess, sort)
+  }, [sort])
+
+  function getRightSortMess(array, sort) {
+    //console.log(' get sort arr ', sort)
+    let arrSort = array
+    if (sort) {
+      arrSort.sort(sortTimeUp)
+    } else {
+      arrSort.sort(sortTimeDown)
+    }
+    setArrMess([...arrSort])
+  }
+
+  function sortTimeUp(a, b) {
+    if (a.now < b.now) {
+      return -1;
+    }
+    if (a.now > b.now) {
+      return 1;
+    }
+  }
+
+  function sortTimeDown(a, b) {
+    if (a.now < b.now) {
+      return 1;
+    }
+    if (a.now > b.now) {
+      return -1;
+    }
   }
 
   return (
@@ -41,21 +106,50 @@ function App() {
         <p className="setting__title"> Стиль отображения сообщений: </p>
         <CheckBox
           name="style"
-          leftText="Из макета"
-          rightText="Упрощенный"
+          leftText="Упрощенный"
+          rightText="Из макета"
           check={style}
           setCheck={setStyle}
         />
       </section>
       <section className="main">
         <section className="main__favor">
-          <Message />
-          <Message />
+          { favorite.map( (el) =>
+                (
+                  <Message
+                    key={el.now}
+                    style={style}
+                    time={el.time}
+                    firstName={el.fName}
+                    secondName={el.sName}
+                    now={el.now}
+                    text={el.text}
+                    translateText={el.translateText}
+                    favorite={favorite}
+                    setFavorite={setFavorite}
+                  />
+                )
+            )
+          }
         </section>
         <section className="main__flow">
-          <Message />
-          <Message />
-          <Message />
+          { arrMess.map( (el) =>
+                (
+                  <Message
+                    key={el.now}
+                    style={style}
+                    time={el.time}
+                    firstName={el.fName}
+                    secondName={el.sName}
+                    now={el.now}
+                    text={el.text}
+                    translateText={el.translateText}
+                    favorite={favorite}
+                    setFavorite={setFavorite}
+                  />
+                )
+            )
+          }
         </section>
       </section>
     </section>

@@ -4,11 +4,11 @@ const cheerio = require('cheerio')
 const translateOLD = require('@vitalets/google-translate-api');
 let apiNames = 'https://api.randomdatatools.ru/'
 let apiText = 'https://geek-jokes.sameerkumar.website/api?format=json'
-const { translate } = require('free-translate');
 let dataBefore
 let fName
 let sName
 let text
+let time
 let translateText
 
 getPerson()
@@ -50,11 +50,24 @@ function getTranslate() {
         dataBefore = []
         console.log(' скорее всего, это первое получение сообщения. ', e)
       }
+      const now = new Date()
+      function rewriteTime(num) {
+        if (num<10) {
+          return '0'+num
+        } else {
+          return num
+        }
+      }
+      time = rewriteTime(now.getHours())+':'+rewriteTime(now.getMinutes())
+      //console.log(time)
+      //console.log(now)
       let obj = {
         fName,
         sName,
         text,
-        translateText
+        translateText,
+        now,
+        time
       }
       dataBefore.push(obj)
       fs.writeFileSync('../back/data.JSON' , JSON.stringify(dataBefore))
