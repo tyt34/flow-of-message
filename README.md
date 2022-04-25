@@ -1,6 +1,5 @@
 # Flow of message
 
-![](https://shields.io/badge/-Bash-374A42)
 ![](https://shields.io/badge/-HTML-orange) 
 ![](https://shields.io/badge/-CSS-blue)
 ![](https://shields.io/badge/-JavaScript-yellow)
