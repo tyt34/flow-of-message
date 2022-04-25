@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Flow of message
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![](https://shields.io/badge/-Bash-374A42)
+![](https://shields.io/badge/-HTML-orange) 
+![](https://shields.io/badge/-CSS-blue)
+![](https://shields.io/badge/-JavaScript-yellow)
+![](https://shields.io/badge/-React.JS-05D9FF)
+![](https://shields.io/badge/-Node.js-3E863D)
+![](https://shields.io/badge/-Express.JS-384752)
 
-## Available Scripts
+## Описание
 
-In the project directory, you can run:
+* Демонстрационное приложение, которое выводит последние 20 сообщений из потока.
+* В приложение есть два переключателя. Первый для порядка вывода сообщений. Второй для стиля отображения сообщений. 
+* Понравившиеся сообщения можно добавить в категорию *"Избранное"* нажав на иконку звездочки. Данные сообщения сохраняются и после перезагрузки страницы не пропадают. 
 
-### `npm start` -----
+## Функциональность
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* Для создания потока используется *bash* скрипт. Он генерирует имя и фамилию случайного пользователя и случайное сообщение. Для создания пользователя используется [данное api](https://api.randomdatatools.ru/). Для случайного сообщения [данное api](https://geek-jokes.sameerkumar.website/api?format=json). Для перевода сообщения на русский язык используется [данная библиотека](https://github.com/vitalets/google-translate-api).
+* Bash скрипт *start_flow* для создания сообщения находится в папке *flow*. С интервалом в 4 секунды он запускает nodejs программу *create_message*. Она в свою очередь генерирует сообщение, которое сохраняется в файле *data.JSON* в папки *back*.
+* В папке *back* располагается простейший сервер на *Express*, который отдает файл *data.JSON* по адресу *http://localhost:3001/*.
+* В папке *front* находится *React* приложение, которое выводит сообщения полученные от запроса к серверу. Запрос к серверу осуществляется при старте приложения и через каждые 5 секунд.
+* Локальные данные на стороне пользователя хранятся в *localStorage*.
+* Для отображения сообщений используется два дизайна. Из макета и упрощенный.
+* Порядок вывода сообщений может быть, или новое сообщение снизу, или сверху. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<tr>
+    <hr>
+</tr>
 
-### `npm test`
+[Ссылка на макет в Figma](https://www.figma.com/file/4BpCg1CO3kyzeuBV0KzfQb/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%B0%D1%8F-%D0%BA%D0%B0%D1%80%D1%82%D0%BE%D1%87%D0%BA%D0%B0?node-id=0%3A1).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Запуск приложения
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* * Зайти в папку *front* и использовать команды:
+1. npm i
+2. npm run start
+* * Зайти в папку *back* и использовать команды:
+1. npm i
+2. npm run start
+* * Зайти в папку *flow* и использовать команды:
+1. npm i
+2. sh start_flow.sh
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Планы по доработке
+* Заменить хранение локальных данных с *localStorage* на *cookie*.
+* Не использовать избыточные программы, которые находятся в папке *flow*. То есть, перенести данную логику на сервер. 
