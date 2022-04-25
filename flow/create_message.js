@@ -1,7 +1,7 @@
 const fs = require('fs')
 const request = require('request')
 const cheerio = require('cheerio')
-const translateOLD = require('@vitalets/google-translate-api');
+const translateOLD = require('@vitalets/google-translate-api')
 let apiNames = 'https://api.randomdatatools.ru/'
 let apiText = 'https://geek-jokes.sameerkumar.website/api?format=json'
 let dataBefore
