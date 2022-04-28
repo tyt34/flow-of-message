@@ -75,7 +75,7 @@ function getTranslate() {
         time
       }
       dataBefore.push(obj)
-      fs.writeFileSync('./data.JSON' , JSON.stringify(dataBefore))
+      fs.writeFileSync('./data.JSON' , JSON.stringify(dataBefore.slice(-100)))
     })
     .catch(
       (err) => {
