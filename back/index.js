@@ -52,7 +52,7 @@ function getTranslate() {
       translateText = res.text
       console.log(translateText)
       try {
-        dataBefore = JSON.parse(fs.readFileSync('../back/data.JSON', 'utf-8'))
+        dataBefore = JSON.parse(fs.readFileSync('./data.JSON', 'utf-8'))
       } catch (e) {
         dataBefore = []
         console.log(' скорее всего, это первое получение сообщения. ', e)
@@ -75,7 +75,7 @@ function getTranslate() {
         time
       }
       dataBefore.push(obj)
-      fs.writeFileSync('../back/data.JSON' , JSON.stringify(dataBefore))
+      fs.writeFileSync('./data.JSON' , JSON.stringify(dataBefore))
     })
     .catch(
       (err) => {
