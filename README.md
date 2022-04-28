@@ -33,7 +33,7 @@ REACT_APP_BASENAME=http://localhost:3000/
 ```
 Для этого можно воспользоваться командой: 
 ```
-echo -e "REACT_APP_BASENAME=http://localhost:3000/" > .env
+echo -e "REACT_APP_BASENAME=http://localhost:3001/" > .env
 ```
 3. npm run start
 * Запуск backend'а: зайти в папку *back* и использовать команды:
