@@ -29,7 +29,7 @@
 1. npm i
 2. Для использования локального backend'а создайте файл .env с текстом 
 ```
-REACT_APP_BASENAME=http://localhost:3000/
+REACT_APP_BASENAME=http://localhost:3001/
 ```
 Для этого можно воспользоваться командой: 
 ```
