@@ -1,3 +1,4 @@
+//const fetch = require('node-fetch')
 const express = require('express')
 const fs = require('fs')
 const cors = require('cors')
@@ -21,11 +22,34 @@ try {
   fs.writeFileSync('./data.JSON', JSON.stringify(file))
 }
 
+function getMessFromNewBack() {
+  console.log('Hi')
+  let link = 'http://f0665380.xsph.ru/'
+
+  let data = {
+    'actionName': 'MessagesLoad',
+    'messageId': '0',
+    'oldMessages': 'true'
+  }
+
+  request({
+      url: link,
+      method: "POST",
+      json: true,   // <--Very important!!!
+      body: JSON.stringify(data)
+  }, function (error, response, body){
+      console.log(response)
+  });
+
+}
+
+//getMessFromNewBack()
+
 function getPerson() {
   request(apiNames, function(err, resp, html) {
     if (!err){
-      console.log(JSON.parse(html).FirstName)
-      console.log(JSON.parse(html).FatherName)
+      //console.log(JSON.parse(html).FirstName)
+      //console.log(JSON.parse(html).FatherName)
       fName = JSON.parse(html).FirstName
       sName = JSON.parse(html).FatherName
     } else {
@@ -38,7 +62,7 @@ function getText() {
   request(apiText, function(err, resp, html) {
     if (!err){
       text = JSON.parse(html).joke
-      console.log('message: ', text)
+      //console.log('message: ', text)
       getTranslate()
     } else {
       console.log("Error");
@@ -50,7 +74,7 @@ function getTranslate() {
   translateOLD(text, {to: 'ru'})
     .then( res => {
       translateText = res.text
-      console.log(translateText)
+      //console.log(translateText)
       try {
         dataBefore = JSON.parse(fs.readFileSync('./data.JSON', 'utf-8'))
       } catch (e) {
@@ -85,14 +109,14 @@ function getTranslate() {
       }
     )
 }
-
+/*
 let generatorMessage = setInterval(
   () => {
     getPerson()
     getText()
   }, 4000
 )
-
+*/
 let checkSize = setInterval(
   () => {
     file = JSON.parse(fs.readFileSync('./data.JSON', 'utf-8'))
@@ -116,7 +140,8 @@ const options = {
 app.use('*', cors(options.origin));
 
 app.get('/', (req, res) => {
-  res.send(file)
+  //res.send(file)
+  res.send(JSON.parse(fs.readFileSync('./dataFromNotMyBack.JSON', 'utf-8')))
 })
 
 app.listen(port, () => {

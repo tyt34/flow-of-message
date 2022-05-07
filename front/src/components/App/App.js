@@ -28,7 +28,7 @@ function App() {
   useInterval(() => {
     getMessages()
     .then( res => {
-      getRightSortMess(res.slice(-20), sort)
+      getRightSortMess(res, sort)
     })
     .catch( e => {
       console.log(' er2 ', e)
@@ -83,6 +83,25 @@ function App() {
     }
   }
 
+  function sortIDUp(a, b) {
+    console.log(a.id, Number(a.id))
+    if (Number(a.id) < b.now) {
+      return -1;
+    }
+    if (a.now > b.now) {
+      return 1;
+    }
+  }
+
+  function sortIDDown(a, b) {
+    if (a.now < b.now) {
+      return 1;
+    }
+    if (a.now > b.now) {
+      return -1;
+    }
+  }
+
   return (
     <section className="app">
       <section className="roof">
@@ -121,8 +140,8 @@ function App() {
                   key={el.now}
                   style={style}
                   time={el.time}
-                  fName={el.fName}
-                  sName={el.sName}
+                  fName={el.author}
+                  sName={''}
                   now={el.now}
                   text={el.text}
                   translateText={el.translateText}

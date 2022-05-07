@@ -11,11 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@vitalets/google-translate-api": "^8.0.0",
+    "cheerio": "^1.0.0-rc.10",
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "fs": "0.0.1-security",
-    "@vitalets/google-translate-api": "^8.0.0",
-    "cheerio": "^1.0.0-rc.10",
+    "node-fetch": "^3.2.4",
     "request": "^2.88.2"
   },
   "devDependencies": {

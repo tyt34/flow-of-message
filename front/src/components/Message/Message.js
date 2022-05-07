@@ -18,8 +18,8 @@ function Message(
 
   useEffect( () => {
     let altMainArr = arrMess.slice()
-    altMainArr.map( (mess, i) => {
-      favorite.map( (favMes) => {
+    altMainArr.forEach( (mess) => {
+      favorite.forEach( (favMes) => {
         if ((mess.now === favMes.now) && (mess.fName === favMes.fName)) {
           mess.isLike = true
         }
@@ -44,7 +44,7 @@ function Message(
       localStorage.setItem('favor', JSON.stringify(newArr))
       // добавление лайка в массив "главное"
       let altMainArr = arrMess.slice()
-      altMainArr.map( (mess, i) => {
+      altMainArr.forEach( (mess) => {
         if ((mess.now === now) && (mess.fName === fName)) {
           mess.isLike = true
         }
@@ -54,17 +54,17 @@ function Message(
       // удаление сообщения из массива "избранное"
       let newArr = favorite.slice()
       let indexForDel
-      newArr.map( (mess, i) => {
+      newArr.forEach( (mess, i) => {
         if ((mess.now === now) && (mess.fName === fName)) {
           indexForDel = i
         }
       })
       newArr.splice(indexForDel, 1)
       setFavorite(newArr)
-      localStorage.setItem('favor', newArr)
+      localStorage.setItem('favor', JSON.stringify(newArr))
       // удаление лайка из массива "главное"
       let altMainArr = arrMess.slice()
-      altMainArr.map( (mess, i) => {
+      altMainArr.forEach( (mess) => {
         if ((mess.now === now) && (mess.fName === fName)) {
           mess.isLike = false
         }
