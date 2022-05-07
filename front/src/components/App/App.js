@@ -28,7 +28,7 @@ function App() {
   useInterval(() => {
     getMessages()
     .then( res => {
-      getRightSortMess(res, sort)
+      getRightSortMess(res.slice(-20), sort)
     })
     .catch( e => {
       console.log(' er2 ', e)
