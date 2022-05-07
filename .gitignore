@@ -3,4 +3,5 @@
 /front/node_modules
 /flow/node_modules
 /back/data.JSON
+/back/build
 /front/.env
