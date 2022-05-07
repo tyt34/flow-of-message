@@ -83,25 +83,6 @@ function App() {
     }
   }
 
-  function sortIDUp(a, b) {
-    console.log(a.id, Number(a.id))
-    if (Number(a.id) < b.now) {
-      return -1;
-    }
-    if (a.now > b.now) {
-      return 1;
-    }
-  }
-
-  function sortIDDown(a, b) {
-    if (a.now < b.now) {
-      return 1;
-    }
-    if (a.now > b.now) {
-      return -1;
-    }
-  }
-
   return (
     <section className="app">
       <section className="roof">
