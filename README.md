@@ -25,9 +25,20 @@
 
 ## Запуск приложения
 
+▩ Использования **backend'а по умолчанию** ([Он находится по этой ссылке](https://glitch.com/edit/#!/flow-mess)):
 * Запуск frontend'а: зайти в папку *front* и использовать команды:
 1. npm i
-2. Для использования локального backend'а создайте файл .env с текстом 
+2. npm run start
+
+Если вы находитесь в корне папки, то можете воспользоваться командой: 
+```
+cd front && npm i && npm run start
+```
+
+▩ Использования **backend'а**, который находится **в этом репозитории** (в папке *back*):
+* Запуск frontend'а: зайти в папку *front* и использовать команды:
+1. npm i
+2. Создайте файл .env с текстом 
 ```
 REACT_APP_BASENAME=http://localhost:3001/
 ```
@@ -36,9 +47,19 @@ REACT_APP_BASENAME=http://localhost:3001/
 echo -e "REACT_APP_BASENAME=http://localhost:3001/" > .env
 ```
 3. npm run start
+
+Если вы находитесь в корне папки, то можете воспользоваться командой: 
+```
+cd front && npm i && echo -e "REACT_APP_BASENAME=http://localhost:3001/" > .env && npm run start
+```
 * Запуск backend'а: зайти в папку *back* и использовать команды:
 1. npm i
 2. npm run start
+
+Если вы находитесь в корне папки, то можете воспользоваться командой: 
+```
+cd back && npm i && npm run start
+```
 
 ## Планы по доработке
 
